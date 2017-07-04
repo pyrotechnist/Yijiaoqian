@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.longyuan.yijiaoqian.Promotion;
 import com.longyuan.yijiaoqian.R;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -60,14 +61,14 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
         final Random rand = new Random();
         int diceRoll = rand.nextInt(6) + 1;
 
-        String url = "http://lorempixel.com/400/200/sports/";
+        String url = "http://lorempixel.com/400/200/sports/" + diceRoll;
 
-       /* Glide.with(holder.imageView.getContext())
+       Glide.with(holder.imageView.getContext())
                 .load(url)
                 .fitCenter()
-                .into(holder.imageView);*/
+                .into(holder.imageView);
 
-        holder.imageView.setImageResource(R.drawable.sport_1);
+        //holder.imageView.setImageResource(R.drawable.sport_1);
 
         //holder.imageView.setImageResource(android.R.drawable.arrow_up_float);
     }
@@ -91,5 +92,11 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
             textView = (TextView) itemView.findViewById(R.id.promotion_title);
             ;
         }
+    }
+
+    public void setFilter(List<Promotion> countryModels){
+        promotionsList = new ArrayList<>();
+        promotionsList.addAll(countryModels);
+        notifyDataSetChanged();
     }
 }
