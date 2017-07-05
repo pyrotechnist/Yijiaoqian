@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -43,6 +44,10 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
 
     private  List<Promotion> mPromotions;
 
+    private  SwipeRefreshLayout mSwipeRefreshLayout;
+
+    private RecyclerView mRecyclerView;
+
 
     @Override
     public boolean onQueryTextSubmit(String query) {
@@ -59,10 +64,16 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        RecyclerView rv = (RecyclerView) inflater.inflate(
+
+
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) inflater.inflate(
                 R.layout.promotions_frag, container, false);
-        setupRecyclerView(rv);
-        return rv;
+
+
+        mRecyclerView = (RecyclerView) mSwipeRefreshLayout.findViewById(R.id.recyclerview);
+        setupRecyclerView();
+        return mSwipeRefreshLayout;
     }
 
     @Override
@@ -80,7 +91,9 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
 
     }
 
-    private void setupRecyclerView(RecyclerView recyclerView) {
+    private void setupRecyclerView( ) {
+
+
 
         mPromotions = mPromotionsRepository.getPromotions(mCategory);
 
@@ -95,8 +108,21 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
             }
         });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        recyclerView.setAdapter(mPromotionsRecyclerViewAdapter);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                mPromotionsRepository.addPromotion(new Promotion(10,"Better 10","", Category.Better));
+                mPromotions = mPromotionsRepository.getPromotions(mCategory);
+                //mPromotionsRecyclerViewAdapter = new PromotionsRecyclerViewAdapter(mPromotions,getContext());
+                //mRecyclerView.setAdapter(mPromotionsRecyclerViewAdapter);
+                mPromotionsRecyclerViewAdapter.setFilter(mPromotions);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+        mRecyclerView.setAdapter(mPromotionsRecyclerViewAdapter);
     }
 
     @Override

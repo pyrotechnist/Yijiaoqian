@@ -47,6 +47,8 @@ public class PromotionsRepository {
 
         List<Promotion> promotionsAfterFilter = new ArrayList<Promotion>();
 
+
+
         for (Promotion element : mPromotions) {
 
             if(element.getCategory() == category)
@@ -55,24 +57,28 @@ public class PromotionsRepository {
 
             }
         }
-
         return  promotionsAfterFilter;
 
     }
 
-    public Promotion getPromotion(int promotionId){
+    public Promotion getPromotion(int promotionId) {
 
-         Promotion promotion = null ;
+        Promotion promotion = null;
 
         for (Promotion element : mPromotions) {
 
-            if(element.getId() == promotionId)
-            {
-               return promotion = element;
+            if (element.getId() == promotionId) {
+                return promotion = element;
 
             }
         }
-
         return  promotion;
+    }
+
+    public void addPromotion(Promotion promotion){
+
+        mPromotions.add(promotion);
+
+
     }
 }
