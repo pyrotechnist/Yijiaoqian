@@ -8,12 +8,33 @@ import com.longyuan.yijiaoqian.utils.Category;
 
 public class Promotion {
 
-    public Promotion(String title, String image, Category category) {
+    public Promotion(int id ,String title, String image, Category category) {
+        this.id = id;
         this.image = image;
         this.title = title;
         this.category = category;
 
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    private int id;
+
+    private Boolean isActive;
 
     private String image;
 

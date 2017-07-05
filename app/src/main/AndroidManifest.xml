@@ -18,6 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PromotionDetail.PromotionDetailActivity"
+            android:label="@string/title_activity_promotion_detail"
+            android:theme="@style/Base.Theme.DesignDemo">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PromotionsActivity" />
+        </activity>
     </application>
 
 </manifest>

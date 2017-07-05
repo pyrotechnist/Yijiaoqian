@@ -1,5 +1,6 @@
 package com.longyuan.yijiaoqian;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,9 +14,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.longyuan.yijiaoqian.PromotionDetail.PromotionDetailActivity;
 import com.longyuan.yijiaoqian.data.PromotionsRepository;
 import com.longyuan.yijiaoqian.utils.Category;
+import com.longyuan.yijiaoqian.utils.OnItemClickListener;
 import com.longyuan.yijiaoqian.utils.PromotionsRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -28,6 +33,8 @@ import java.util.Locale;
 
 public class PromotionsFragment extends Fragment implements SearchView.OnQueryTextListener{
 
+    public static final String EXTRA_MESSAGE_NAME = "com.longyuan.yijiaoqian.MESSAGE_NAME";
+
     private PromotionsRepository mPromotionsRepository;
 
     private Category mCategory;
@@ -35,6 +42,7 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
     private PromotionsRecyclerViewAdapter mPromotionsRecyclerViewAdapter;
 
     private  List<Promotion> mPromotions;
+
 
     @Override
     public boolean onQueryTextSubmit(String query) {
@@ -77,6 +85,16 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
         mPromotions = mPromotionsRepository.getPromotions(mCategory);
 
         mPromotionsRecyclerViewAdapter = new PromotionsRecyclerViewAdapter(mPromotions,getContext());
+
+        mPromotionsRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(Promotion promotion) {
+                Intent intent = new Intent(getContext(), PromotionDetailActivity.class);
+                intent.putExtra(EXTRA_MESSAGE_NAME, promotion.getId());
+                startActivity(intent);
+            }
+        });
+
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         recyclerView.setAdapter(mPromotionsRecyclerViewAdapter);
     }

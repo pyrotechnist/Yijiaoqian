@@ -31,6 +31,12 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
 
     private Context context;
 
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+
 
     public PromotionsRecyclerViewAdapter(List<Promotion> promotionsList,Context context) {
         this.promotionsList = promotionsList;
@@ -45,6 +51,8 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
 
 
 
+
+
         PromotionViewHolder vh = new PromotionViewHolder(root);
 
         return vh;
@@ -54,7 +62,7 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
     @Override
     public void onBindViewHolder(PromotionViewHolder holder, int position) {
 
-        Promotion promotion  = promotionsList.get(position);
+        final Promotion promotion  = promotionsList.get(position);
 
         holder.textView.setText(promotion.getTitle());
 
@@ -63,12 +71,22 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
 
         String url = "http://lorempixel.com/400/200/sports/" + diceRoll;
 
-       Glide.with(holder.imageView.getContext())
+       /*Glide.with(holder.imageView.getContext())
                 .load(url)
                 .fitCenter()
-                .into(holder.imageView);
+                .into(holder.imageView);*/
 
-        //holder.imageView.setImageResource(R.drawable.sport_1);
+        holder.imageView.setImageResource(R.drawable.sport_1);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClickListener.onItemClick(promotion);
+            }
+        };
+
+        holder.itemView.setOnClickListener(listener);
+
 
         //holder.imageView.setImageResource(android.R.drawable.arrow_up_float);
     }
