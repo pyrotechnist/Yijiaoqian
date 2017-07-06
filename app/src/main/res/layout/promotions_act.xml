@@ -9,6 +9,9 @@
 
     <include layout="@layout/promotions_viewpager"/>
 
+    <include layout="@layout/bottom_navigation"/>
+<!--
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
@@ -16,6 +19,7 @@
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/menu_bottom_navigation" />
+-->
 
 
 </RelativeLayout>

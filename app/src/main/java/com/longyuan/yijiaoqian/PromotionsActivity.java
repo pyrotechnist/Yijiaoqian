@@ -1,7 +1,9 @@
 package com.longyuan.yijiaoqian;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,9 +13,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.longyuan.yijiaoqian.Discovery.DiscoveryActivity;
+import com.longyuan.yijiaoqian.PromotionDetail.PromotionDetailActivity;
 import com.longyuan.yijiaoqian.data.PromotionsRepository;
 import com.longyuan.yijiaoqian.utils.Category;
 
@@ -47,7 +52,32 @@ public class PromotionsActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-       BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+       BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_promotion:
+
+                       // onResume();
+                        return true;
+                    case R.id.navigation_discovery:
+
+
+                        Intent intent = new Intent(getApplicationContext(), DiscoveryActivity.class);
+                        startActivity(intent);
+
+                        return true;
+                    case R.id.navigation_contribute:
+
+                        return true;
+                    case R.id.navigation_me:
+
+                        return true;
+                }
+                return false;
+            }
+        });
 
     }
 
