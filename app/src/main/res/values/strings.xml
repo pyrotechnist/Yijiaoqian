@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Yijiaoqian</string>
     <string name="action_search">Search</string>
-    <string name="title_activity_promotion_detail">PromotionDetailActivity</string>
+    <string name="title_activity_promotion_detail">PromotionDetail</string>
+
+    <string name="bottom_navigation_promotion">Promotion</string>
+    <string name="bottom_navigation_discovery">Discovery</string>
+    <string name="bottom_navigation_contribute">Contribute</string>
+    <string name="bottom_navigation_me">me</string>
+    <string name="title_activity_discovety">DiscovetyActivity</string>
+
 </resources>

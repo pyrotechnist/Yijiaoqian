@@ -26,6 +26,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PromotionsActivity" />
         </activity>
+        <activity
+            android:name=".Discovery.DiscoveryActivity"
+            android:label="@string/title_activity_discovety"
+            android:theme="@style/Base.Theme.DesignDemo"></activity>
     </application>
 
 </manifest>

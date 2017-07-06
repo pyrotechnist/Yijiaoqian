@@ -16,21 +16,6 @@ public class Promotion {
 
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
 
     private int id;
 
@@ -39,6 +24,16 @@ public class Promotion {
     private String image;
 
     private String title;
+
+    private int watchedCount;
+
+    public int getWatchedCount() {
+        return watchedCount;
+    }
+
+    public void setWatchedCount(int watchedCount) {
+        this.watchedCount = watchedCount;
+    }
 
     public Category getCategory() {
         return category;
@@ -64,5 +59,21 @@ public class Promotion {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }

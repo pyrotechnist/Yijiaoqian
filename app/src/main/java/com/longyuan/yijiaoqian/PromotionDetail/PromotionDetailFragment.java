@@ -48,7 +48,9 @@ public class PromotionDetailFragment extends Fragment implements PromotionDetail
 
        mDetailTitle.setText(promotion.getTitle());
 
-      mDetailCategory.setText(promotion.getCategory().toString());
+       mDetailCategory.setText(promotion.getCategory().toString());
+
+        ((PromotionDetailActivity)getActivity()).setWatchedCounter(promotion.getWatchedCount());
 
     }
 
@@ -59,8 +61,6 @@ public class PromotionDetailFragment extends Fragment implements PromotionDetail
         View root = inflater.inflate(R.layout.promotion_detail_frag, container, false);
 
         mDetailId = (TextView) root.findViewById(R.id.promotion_detail_id);
-
-
 
         mDetailTitle = (TextView) root.findViewById(R.id.promotion_detail_title);
 

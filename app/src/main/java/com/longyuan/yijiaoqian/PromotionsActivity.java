@@ -2,6 +2,7 @@ package com.longyuan.yijiaoqian;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -46,7 +47,7 @@ public class PromotionsActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-
+       BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
 
     }
 

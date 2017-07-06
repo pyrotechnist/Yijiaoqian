@@ -68,6 +68,7 @@ public class PromotionsRepository {
         for (Promotion element : mPromotions) {
 
             if (element.getId() == promotionId) {
+                element.setWatchedCount(element.getWatchedCount() + 1);
                 return promotion = element;
 
             }
@@ -78,7 +79,22 @@ public class PromotionsRepository {
     public void addPromotion(Promotion promotion){
 
         mPromotions.add(promotion);
+    }
 
+    public int clickPromotion(int promotionId){
+
+        Promotion promotion = null;
+
+        for (Promotion element : mPromotions) {
+
+            if (element.getId() == promotionId) {
+
+                element.setWatchedCount(element.getWatchedCount() + 1);
+                promotion = element;
+
+            }
+        }
+        return  promotion.getWatchedCount();
 
     }
 }
