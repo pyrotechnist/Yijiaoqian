@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.longyuan.yijiaoqian.Promotion;
+import com.longyuan.yijiaoqian.data.Promotion;
 import com.longyuan.yijiaoqian.R;
 
 /**
@@ -42,7 +42,6 @@ public class PromotionDetailFragment extends Fragment implements PromotionDetail
 
     @Override
     public void displayPromotionDetail(Promotion promotion) {
-
 
        mDetailId.setText(Integer.toString(promotion.getId()));
 

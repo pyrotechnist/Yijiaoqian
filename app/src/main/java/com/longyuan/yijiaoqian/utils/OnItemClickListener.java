@@ -1,6 +1,7 @@
 package com.longyuan.yijiaoqian.utils;
 
-import com.longyuan.yijiaoqian.Promotion;
+import com.longyuan.yijiaoqian.data.DisplayData;
+import com.longyuan.yijiaoqian.data.Promotion;
 
 /**
  * Created by loxu on 05/07/2017.
@@ -8,5 +9,5 @@ import com.longyuan.yijiaoqian.Promotion;
 
 public interface OnItemClickListener {
 
-    void onItemClick(Promotion item);
+    void onItemClick(DisplayData item);
 }

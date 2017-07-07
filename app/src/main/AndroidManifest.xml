@@ -27,7 +27,7 @@
                 android:value=".PromotionsActivity" />
         </activity>
         <activity
-            android:name=".Discovery.DiscoveryActivity"
+            android:name=".Discovery.DiscoveriesActivity"
             android:label="@string/title_activity_discovety"
             android:theme="@style/Base.Theme.DesignDemo"></activity>
     </application>

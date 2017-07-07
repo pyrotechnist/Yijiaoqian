@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -13,15 +12,18 @@ import android.view.View;
 
 import com.longyuan.yijiaoqian.PromotionsActivity;
 import com.longyuan.yijiaoqian.R;
+import com.longyuan.yijiaoqian.data.DiscoveryRepository;
 
-public class DiscoveryActivity extends AppCompatActivity {
+public class DiscoveriesActivity extends AppCompatActivity {
 
     private  BottomNavigationView bottomNavigationView;
+
+    private DiscoveriesPresenter mDiscoveriesPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.discovery_act);
+        setContentView(R.layout.discoveries_act);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -48,6 +50,22 @@ public class DiscoveryActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        DiscoveriesFragment discoveriesFragment = (DiscoveriesFragment) getSupportFragmentManager().findFragmentById(R.id.discoveries_fragcontent);
+
+        if(discoveriesFragment == null)
+        {
+
+            discoveriesFragment = DiscoveriesFragment.getInstance();
+            FragmentTransaction transaction =  getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.discoveries_fragcontent, discoveriesFragment);
+            transaction.commit();
+        }
+
+
+        mDiscoveriesPresenter = new DiscoveriesPresenter(DiscoveryRepository.getInstance(),discoveriesFragment);
+
 
       /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

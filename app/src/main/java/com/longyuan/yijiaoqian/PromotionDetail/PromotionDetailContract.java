@@ -1,6 +1,6 @@
 package com.longyuan.yijiaoqian.PromotionDetail;
 
-import com.longyuan.yijiaoqian.Promotion;
+import com.longyuan.yijiaoqian.data.Promotion;
 
 /**
  * Created by loxu on 05/07/2017.

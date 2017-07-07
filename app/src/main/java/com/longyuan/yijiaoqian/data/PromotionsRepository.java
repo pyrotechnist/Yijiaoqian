@@ -1,14 +1,9 @@
 package com.longyuan.yijiaoqian.data;
 
-import android.support.annotation.NonNull;
-
-import com.longyuan.yijiaoqian.Promotion;
 import com.longyuan.yijiaoqian.utils.Category;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by loxu on 04/07/2017.

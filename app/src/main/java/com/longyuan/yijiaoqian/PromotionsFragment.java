@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.longyuan.yijiaoqian.PromotionDetail.PromotionDetailActivity;
+import com.longyuan.yijiaoqian.data.DisplayData;
+import com.longyuan.yijiaoqian.data.Promotion;
 import com.longyuan.yijiaoqian.data.PromotionsRepository;
 import com.longyuan.yijiaoqian.utils.Category;
 import com.longyuan.yijiaoqian.utils.OnItemClickListener;
@@ -101,7 +103,7 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
 
         mPromotionsRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(Promotion promotion) {
+            public void onItemClick(DisplayData promotion) {
                 Intent intent = new Intent(getContext(), PromotionDetailActivity.class);
                 intent.putExtra(EXTRA_MESSAGE_NAME, promotion.getId());
                 startActivity(intent);

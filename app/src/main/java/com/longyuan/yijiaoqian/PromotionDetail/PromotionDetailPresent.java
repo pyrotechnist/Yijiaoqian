@@ -1,7 +1,6 @@
 package com.longyuan.yijiaoqian.PromotionDetail;
 
-import com.longyuan.yijiaoqian.Promotion;
-import com.longyuan.yijiaoqian.PromotionsContract;
+import com.longyuan.yijiaoqian.data.Promotion;
 import com.longyuan.yijiaoqian.data.PromotionsRepository;
 
 /**

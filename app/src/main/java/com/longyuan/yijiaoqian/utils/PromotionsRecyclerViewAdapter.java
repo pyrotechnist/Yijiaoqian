@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.longyuan.yijiaoqian.Promotion;
+import com.longyuan.yijiaoqian.data.Promotion;
 import com.longyuan.yijiaoqian.R;
 
 import java.util.ArrayList;

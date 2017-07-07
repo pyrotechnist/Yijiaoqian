@@ -1,6 +1,5 @@
 package com.longyuan.yijiaoqian;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,11 +13,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.view.View;
 
-import com.bumptech.glide.Glide;
-import com.longyuan.yijiaoqian.Discovery.DiscoveryActivity;
-import com.longyuan.yijiaoqian.PromotionDetail.PromotionDetailActivity;
+import com.longyuan.yijiaoqian.Discovery.DiscoveriesActivity;
 import com.longyuan.yijiaoqian.data.PromotionsRepository;
 import com.longyuan.yijiaoqian.utils.Category;
 
@@ -28,6 +25,8 @@ import java.util.List;
 public class PromotionsActivity extends AppCompatActivity {
 
     private PromotionsRepository mPromotionsRepository;
+
+    private  BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class PromotionsActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-       BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -64,7 +63,7 @@ public class PromotionsActivity extends AppCompatActivity {
                     case R.id.navigation_discovery:
 
 
-                        Intent intent = new Intent(getApplicationContext(), DiscoveryActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), DiscoveriesActivity.class);
                         startActivity(intent);
 
                         return true;
@@ -125,4 +124,12 @@ public class PromotionsActivity extends AppCompatActivity {
             return mFragmentTitles.get(position);
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        View view = bottomNavigationView.findViewById(R.id.navigation_promotion);
+        view.performClick();
+    }
+
 }
