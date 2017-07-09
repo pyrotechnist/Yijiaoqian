@@ -29,6 +29,10 @@
         <activity
             android:name=".Discovery.DiscoveriesActivity"
             android:label="@string/title_activity_discovety"
+            android:theme="@style/Base.Theme.DesignDemo" />
+        <activity
+            android:name=".DiscoveryDetail.DiscoveryDetailActivity"
+            android:label="@string/title_activity_discovery_detail"
             android:theme="@style/Base.Theme.DesignDemo"></activity>
     </application>
 

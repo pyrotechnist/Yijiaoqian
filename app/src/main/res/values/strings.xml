@@ -8,5 +8,6 @@
     <string name="bottom_navigation_contribute">Contribute</string>
     <string name="bottom_navigation_me">me</string>
     <string name="title_activity_discovety">DiscovetyActivity</string>
+    <string name="title_activity_discovery_detail">DiscoveryDetailActivity</string>
 
 </resources>

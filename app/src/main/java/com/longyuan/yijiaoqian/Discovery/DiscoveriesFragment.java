@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.longyuan.yijiaoqian.DiscoveryDetail.DiscoveryDetailActivity;
 import com.longyuan.yijiaoqian.PromotionDetail.PromotionDetailActivity;
 import com.longyuan.yijiaoqian.R;
 import com.longyuan.yijiaoqian.data.Discovery;
@@ -31,6 +32,8 @@ import static com.longyuan.yijiaoqian.PromotionsFragment.EXTRA_MESSAGE_NAME;
  */
 
 public class DiscoveriesFragment extends Fragment implements DiscoveriesContract.View {
+
+    public static final String EXTRA_MESSAGE_NAME = "com.longyuan.yijiaoqian.MESSAGE_NAME.discoveryId";
 
     private RecyclerView mRecyclerView;
 
@@ -76,7 +79,7 @@ public class DiscoveriesFragment extends Fragment implements DiscoveriesContract
         mDiscoveriesRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(DisplayData discovery) {
-                Intent intent = new Intent(getContext(), PromotionDetailActivity.class);
+                Intent intent = new Intent(getContext(), DiscoveryDetailActivity.class);
                 intent.putExtra(EXTRA_MESSAGE_NAME, discovery.getId());
                 startActivity(intent);
             }
