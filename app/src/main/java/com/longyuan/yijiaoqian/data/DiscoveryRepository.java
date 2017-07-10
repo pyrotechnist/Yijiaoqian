@@ -49,20 +49,42 @@ public class DiscoveryRepository {
 
     }
 
-    public Discovery getDiscovery(int DiscoveryId) {
+    public Discovery getDiscovery(int DiscoveryId, boolean addWatched) {
 
         Discovery Discovery = null;
 
         for (Discovery element : mDiscoveries) {
 
             if (element.getId() == DiscoveryId) {
-                element.setWatchedCount(element.getWatchedCount() + 1);
+                if(addWatched) {
+                    element.setWatchedCount(element.getWatchedCount() + 1);
+                }
                 return Discovery = element;
 
             }
         }
         return  Discovery;
     }
+
+    public Discovery getDiscovery(int DiscoveryId) {
+
+        return  getDiscovery(DiscoveryId,true);
+    }
+
+    public int addFav(int DiscoveryId){
+
+        for (Discovery element : mDiscoveries) {
+
+            if (element.getId() == DiscoveryId) {
+
+                element.setFavCount(element.getFavCount() + 1);
+
+                return element.getFavCount();
+            }
+        }
+        return  0;
+    }
+
 
     public List<Comment> getComments(int DiscoveryId) {
 

@@ -19,6 +19,8 @@ public class DiscoveryDetailContract {
 
         void displayDiscoveryDetail(Discovery discovery);
 
+        void updateFAvCount(int favCount);
+
     }
 
     interface Presenter {
@@ -28,6 +30,8 @@ public class DiscoveryDetailContract {
         Discovery loadDiscoveryDetail(int discoveryId );
 
         void openComments();
+
+        void addFavCount();
 
     }
 }

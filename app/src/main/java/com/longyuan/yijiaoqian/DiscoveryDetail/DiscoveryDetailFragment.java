@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 import com.longyuan.yijiaoqian.Comment.CommentsActivity;
@@ -32,6 +33,10 @@ public class DiscoveryDetailFragment extends Fragment implements DiscoveryDetail
 
     private TextView textViewTitile;
 
+    private TextView textViewFavCount;
+
+    private ShareActionProvider mShareActionProvider;
+
     public DiscoveryDetailFragment(){};
 
     public static DiscoveryDetailFragment getInstance(){
@@ -52,6 +57,32 @@ public class DiscoveryDetailFragment extends Fragment implements DiscoveryDetail
             public void onClick(View view) {
 
                 mPresenter.openComments();
+            }
+        });
+
+        View viewFav  = root.findViewById(R.id.discovery_detail_bottom_fav);
+
+        textViewFavCount = (TextView) viewFav.findViewById(R.id.discovery_detail_bottom_fav_count);
+
+        viewFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mPresenter.addFavCount();
+            }
+        });
+
+
+        View viewShare  = root.findViewById(R.id.discovery_detail_bottom_share1);
+
+        viewShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "AndroidSolved");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Now Learn Android with AndroidSolved clicke here to visit https://androidsolved.wordpress.com/ ");
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
             }
         });
 
@@ -85,6 +116,14 @@ public class DiscoveryDetailFragment extends Fragment implements DiscoveryDetail
 
         textViewSubTitile.setText(discovery.getSubTitile());
 
+        textViewFavCount.setText(Integer.toString(discovery.getFavCount()));
+
+    }
+
+    @Override
+    public void updateFAvCount(int favCount) {
+
+        textViewFavCount.setText(Integer.toString(favCount));
     }
 
     @Override
@@ -95,5 +134,18 @@ public class DiscoveryDetailFragment extends Fragment implements DiscoveryDetail
         intent.putExtra(EXTRA_MESSAGE_NAME,discoveryId);
 
         startActivity(intent);
+    }
+
+    private void setShareIntent(Intent shareIntent) {
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(shareIntent);
+        }
+    }
+    private Intent createShareIntent() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT,
+                "http://stackandroid.com");
+        return shareIntent;
     }
 }

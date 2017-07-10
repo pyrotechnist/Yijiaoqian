@@ -51,4 +51,11 @@ public class DiscoveryDetailPresenter implements DiscoveryDetailContract.Present
 
         mDiscoveryDetailView.displayComments(mDiscoveryId);
     }
+
+    @Override
+    public void addFavCount() {
+        int count = mDiscoveryRepository.addFav(mDiscoveryId);
+
+        mDiscoveryDetailView.updateFAvCount(count);
+    }
 }
