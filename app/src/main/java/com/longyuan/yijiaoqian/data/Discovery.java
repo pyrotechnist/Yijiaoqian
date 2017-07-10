@@ -2,6 +2,9 @@ package com.longyuan.yijiaoqian.data;
 
 import com.longyuan.yijiaoqian.utils.Category;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by loxu on 06/07/2017.
  */
@@ -14,7 +17,11 @@ public class Discovery extends DisplayData{
         this.image = image;
         this.title = title;
         this.subTitile = subTitile;
+        this.comments = new ArrayList<Comment>();
     }
+
+
+    private List<Comment> comments;
 
     private String contributor;
 
@@ -55,4 +62,13 @@ public class Discovery extends DisplayData{
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
     }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
+
 }

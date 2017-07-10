@@ -1,6 +1,9 @@
 package com.longyuan.yijiaoqian.DiscoveryDetail;
 
+import com.longyuan.yijiaoqian.data.Comment;
 import com.longyuan.yijiaoqian.data.Discovery;
+
+import java.util.List;
 
 /**
  * Created by LONGYUAN on 2017/7/7.
@@ -12,6 +15,8 @@ public class DiscoveryDetailContract {
 
         void setPresenter(Presenter presenter);
 
+        void displayComments(int discoveryId);
+
         void displayDiscoveryDetail(Discovery discovery);
 
     }
@@ -21,6 +26,8 @@ public class DiscoveryDetailContract {
         void start();
 
         Discovery loadDiscoveryDetail(int discoveryId );
+
+        void openComments();
 
     }
 }

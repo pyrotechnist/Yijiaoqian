@@ -16,7 +16,16 @@ public class DiscoveryRepository {
 
     static {
         mDiscoveries = new ArrayList<Discovery>();
-        mDiscoveries.add(new Discovery(1,"Discovery 1","","SubTitle 1"));
+        Discovery discovery = new Discovery(1,"Discovery 1","","SubTitle 1");
+
+        discovery.addComment(new Comment("TestContent","XU"));
+
+        discovery.addComment(new Comment("TestContent","Yang"));
+
+        discovery.addComment(new Comment("TestContent","Deng"));
+
+        mDiscoveries.add(discovery);
+
         mDiscoveries.add(new Discovery(2,"Discovery 2","","SubTitle 2"));
         mDiscoveries.add(new Discovery(3,"Discovery 3","","SubTitle 3"));
         mDiscoveries.add(new Discovery(4,"Discovery 4","","SubTitle 4"));
@@ -53,6 +62,20 @@ public class DiscoveryRepository {
             }
         }
         return  Discovery;
+    }
+
+    public List<Comment> getComments(int DiscoveryId) {
+
+        List<Comment> commentList = new ArrayList<Comment>();
+
+        for (Discovery element : mDiscoveries) {
+
+            if (element.getId() == DiscoveryId) {
+                return element.getComments();
+
+            }
+        }
+        return  commentList;
     }
 
     public void addDiscovery(Discovery Discovery){

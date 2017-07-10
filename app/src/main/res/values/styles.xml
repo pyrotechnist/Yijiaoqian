@@ -36,4 +36,16 @@
 
     <style name="Base.Theme.DesignDemo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="CodeFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="CodeFont.Small" >
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="CodeFont.Medium" >
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

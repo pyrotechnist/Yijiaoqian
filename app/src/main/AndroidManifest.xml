@@ -33,6 +33,10 @@
         <activity
             android:name=".DiscoveryDetail.DiscoveryDetailActivity"
             android:label="@string/title_activity_discovery_detail"
+            android:theme="@style/Base.Theme.DesignDemo" />
+        <activity
+            android:name=".Comment.CommentsActivity"
+            android:label="@string/title_activity_comments"
             android:theme="@style/Base.Theme.DesignDemo"></activity>
     </application>
 

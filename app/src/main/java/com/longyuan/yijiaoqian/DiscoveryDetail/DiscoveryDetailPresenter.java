@@ -13,6 +13,8 @@ public class DiscoveryDetailPresenter implements DiscoveryDetailContract.Present
 
     private DiscoveryDetailContract.View mDiscoveryDetailView;
 
+
+
     private DiscoveryRepository mDiscoveryRepository;
 
     private Discovery  mDiscovery ;
@@ -42,5 +44,11 @@ public class DiscoveryDetailPresenter implements DiscoveryDetailContract.Present
 
         return  mDiscoveryRepository.getDiscovery(discoveryId);
 
+    }
+
+    @Override
+    public void openComments() {
+
+        mDiscoveryDetailView.displayComments(mDiscoveryId);
     }
 }
