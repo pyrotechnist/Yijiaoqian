@@ -35,6 +35,8 @@ public class DiscoveryDetailFragment extends Fragment implements DiscoveryDetail
 
     private TextView textViewFavCount;
 
+    private TextView textViewCommentCount;
+
     private ShareActionProvider mShareActionProvider;
 
     public DiscoveryDetailFragment(){};
@@ -71,6 +73,8 @@ public class DiscoveryDetailFragment extends Fragment implements DiscoveryDetail
                 mPresenter.addFavCount();
             }
         });
+
+        textViewCommentCount = (TextView) root.findViewById(R.id.discovery_detail_bottom_comment_count);
 
 
         View viewShare  = root.findViewById(R.id.discovery_detail_bottom_share1);
@@ -117,6 +121,8 @@ public class DiscoveryDetailFragment extends Fragment implements DiscoveryDetail
         textViewSubTitile.setText(discovery.getSubTitile());
 
         textViewFavCount.setText(Integer.toString(discovery.getFavCount()));
+
+        textViewCommentCount.setText(Integer.toString(discovery.getCommentCount()));
 
     }
 

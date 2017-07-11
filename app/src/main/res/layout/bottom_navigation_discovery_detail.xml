@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="1"
+            android:id="@+id/discovery_detail_bottom_comment_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

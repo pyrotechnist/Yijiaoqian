@@ -56,12 +56,9 @@ public class Discovery extends DisplayData{
     }
 
     public int getCommentCount() {
-        return commentCount;
+        return comments.size();
     }
 
-    public void setCommentCount(int commentCount) {
-        this.commentCount = commentCount;
-    }
 
     public List<Comment> getComments() {
         return comments;
