@@ -51,7 +51,7 @@ public class DiscoveryRepository {
 
     public Discovery getDiscovery(int DiscoveryId, boolean addWatched) {
 
-        Discovery Discovery = null;
+        Discovery discovery = null;
 
         for (Discovery element : mDiscoveries) {
 
@@ -59,11 +59,12 @@ public class DiscoveryRepository {
                 if(addWatched) {
                     element.setWatchedCount(element.getWatchedCount() + 1);
                 }
-                return Discovery = element;
+                discovery = element;
+                return discovery;
 
             }
         }
-        return  Discovery;
+        return  discovery;
     }
 
     public Discovery getDiscovery(int DiscoveryId) {
@@ -73,7 +74,16 @@ public class DiscoveryRepository {
 
     public int addFav(int DiscoveryId){
 
-        for (Discovery element : mDiscoveries) {
+
+        Discovery discovery = getDiscovery(DiscoveryId,false);
+
+        int counter = discovery.getFavCount() + 1 ;
+
+        discovery.setFavCount(counter);
+
+        return  counter;
+
+       /* for (Discovery element : mDiscoveries) {
 
             if (element.getId() == DiscoveryId) {
 
@@ -82,7 +92,7 @@ public class DiscoveryRepository {
                 return element.getFavCount();
             }
         }
-        return  0;
+        return  0;*/
     }
 
 
@@ -90,18 +100,24 @@ public class DiscoveryRepository {
 
         List<Comment> commentList = new ArrayList<Comment>();
 
-        for (Discovery element : mDiscoveries) {
+        Discovery discovery = getDiscovery(DiscoveryId,false);
 
-            if (element.getId() == DiscoveryId) {
-                return element.getComments();
+        commentList  = discovery.getComments();
 
-            }
-        }
         return  commentList;
     }
 
     public void addDiscovery(Discovery Discovery){
 
         mDiscoveries.add(Discovery);
+    }
+
+    public List<Comment> addComment(int DiscoveryId,Comment comment){
+
+        Discovery discovery = getDiscovery(DiscoveryId,false);
+
+        discovery.getComments().add(comment);
+
+        return  discovery.getComments();
     }
 }

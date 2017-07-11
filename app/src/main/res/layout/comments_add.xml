@@ -1,0 +1,26 @@
+<LinearLayout android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_weight="4"
+        android:src="@drawable/cheese_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <EditText
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <ImageView
+        android:layout_weight="4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@android:drawable/ic_menu_send"/>
+
+</LinearLayout>

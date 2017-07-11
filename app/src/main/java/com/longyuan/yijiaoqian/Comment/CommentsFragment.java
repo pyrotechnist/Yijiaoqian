@@ -10,6 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.longyuan.yijiaoqian.R;
 import com.longyuan.yijiaoqian.data.Comment;
@@ -31,6 +34,10 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
     private CommentsRecyclerViewAdapter mCommentsRecyclerViewAdapter;
 
     private SwipeRefreshLayout mSwipeRefreshLayoutComments;
+
+    private EditText mEditTextComment;
+
+    private ImageView mImageView;
 
     public static CommentsFragment getInstance (){
         return  new CommentsFragment();
@@ -55,6 +62,21 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
         mSwipeRefreshLayoutComments = (SwipeRefreshLayout) root.findViewById(R.id.swipeToRefresh_comments);
 
         mRecyclerViewComments = (RecyclerView) root.findViewById(R.id.recyclerview_comments);
+
+        mEditTextComment = (EditText) root.findViewById(R.id.comment_add);
+
+        mImageView = (ImageView)root.findViewById(R.id.comment_send);
+
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = mEditTextComment.getText().toString();
+                Comment comment = new Comment(text,"haoyang");
+                mEditTextComment.setText("");
+                mPesenter.addComment(comment);
+
+            }
+        });
 
         mCommentsRecyclerViewAdapter = new CommentsRecyclerViewAdapter(new ArrayList<Comment>(0));
 

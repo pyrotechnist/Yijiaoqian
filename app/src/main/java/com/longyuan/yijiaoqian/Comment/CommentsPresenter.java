@@ -35,11 +35,19 @@ public class CommentsPresenter implements CommentsContract.Presenter {
         mCommentsView.displayComments(commentList);
     }
 
+
+
+    @Override
+    public void addComment(Comment comment) {
+
+        List<Comment> commentList = mDiscoveryRepository.addComment(mDiscoveryId,comment);
+
+        mCommentsView.displayComments(commentList);
+
+    }
+
     @Override
     public List<Comment> loadComments(int discoveryId) {
-
-
-
         return mDiscoveryRepository.getDiscovery(discoveryId).getComments();
     }
 }

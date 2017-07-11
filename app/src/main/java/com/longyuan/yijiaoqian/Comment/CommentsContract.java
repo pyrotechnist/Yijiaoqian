@@ -21,6 +21,8 @@ public class CommentsContract {
     interface Presenter{
         void start();
 
+        void addComment(Comment comment);
+
         List<Comment> loadComments(int discoveryId);
 
     }
