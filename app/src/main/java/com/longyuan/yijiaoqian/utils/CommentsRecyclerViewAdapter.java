@@ -1,15 +1,19 @@
 package com.longyuan.yijiaoqian.utils;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.longyuan.yijiaoqian.R;
 import com.longyuan.yijiaoqian.data.Comment;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.zip.Inflater;
@@ -22,6 +26,8 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
     private List<Comment> mComments;
 
+    private Context mContext;
+
     public CommentsRecyclerViewAdapter(List<Comment> mComments) {
         this.mComments = mComments;
     }
@@ -30,6 +36,8 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
     public CommentsAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_item,parent,false);
+
+        mContext = root.getContext();
 
         return new CommentsAdapter(root);
     }
@@ -46,6 +54,16 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
         holder.textViewDate.setText(dateDiff);
 
         holder.textViewAuthor.setText(comment.getContributor());
+
+        ArrayList<String> list = new ArrayList<String>();
+
+        list.add("AAA");
+
+        list.add("BBB");
+
+        ArrayAdapter adapter = new ArrayAdapter(mContext,
+                android.R.layout.simple_list_item_1, list);
+        holder.listView.setAdapter(adapter);
 
     }
 
@@ -80,6 +98,8 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
         TextView textViewContent;
 
+        ListView listView;
+
 
         public CommentsAdapter(View itemView) {
             super(itemView);
@@ -91,6 +111,8 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
             textViewDate = (TextView) itemView.findViewById(R.id.comment_date);
 
             textViewContent = (TextView) itemView.findViewById(R.id.comment_content);
+
+            listView = (ListView) itemView.findViewById(R.id.testlist);
 
         }
     }

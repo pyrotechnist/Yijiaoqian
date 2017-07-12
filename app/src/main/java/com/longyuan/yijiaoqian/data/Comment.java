@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * Created by loxu on 10/07/2017.
@@ -13,16 +14,21 @@ public class Comment {
 
 
     public Comment(String content, String contributor) {
+        this.id = UUID.randomUUID().toString();
         this.content = content;
         this.contributor = contributor;
         this.date = getRandomDate();
     }
+
+    private String id;
 
     private String content;
 
     private String contributor;
 
     private Date date;
+
+    private String parentComment;
 
     public Date getDate() {
         return date;
@@ -46,6 +52,18 @@ public class Comment {
 
     public void setContributor(String contributor) {
         this.contributor = contributor;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getParentComment() {
+        return parentComment;
+    }
+
+    public void setParentComment(String parentComment) {
+        this.parentComment = parentComment;
     }
 
     private Date getRandomDate(){
