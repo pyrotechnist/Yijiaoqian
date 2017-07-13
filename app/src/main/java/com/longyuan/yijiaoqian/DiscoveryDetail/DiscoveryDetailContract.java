@@ -15,7 +15,7 @@ public class DiscoveryDetailContract {
 
         void setPresenter(Presenter presenter);
 
-        void displayComments(int discoveryId);
+        void displayComments(String discoveryId);
 
         void displayDiscoveryDetail(Discovery discovery);
 
@@ -27,7 +27,7 @@ public class DiscoveryDetailContract {
 
         void start();
 
-        Discovery loadDiscoveryDetail(int discoveryId );
+        Discovery loadDiscoveryDetail(String discoveryId );
 
         void openComments();
 

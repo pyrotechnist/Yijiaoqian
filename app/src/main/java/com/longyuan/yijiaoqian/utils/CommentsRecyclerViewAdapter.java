@@ -45,7 +45,16 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
     @Override
     public void onBindViewHolder(CommentsAdapter holder, int position) {
 
-        Comment comment = mComments.get(position);
+        final Comment comment = mComments.get(position);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClickListener.onItemClick(comment);
+            }
+        };
+
+        holder.itemView.setOnClickListener(listener);
 
         holder.textViewContent.setText(comment.getContent());
 
@@ -55,16 +64,18 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
         holder.textViewAuthor.setText(comment.getContributor());
 
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Comment> list = new ArrayList<Comment>();
 
-        list.add("AAA");
+        list.add(new Comment("AAA","XU"));
 
-        list.add("BBB");
+        list.add(new Comment("BBB","Yang"));
 
-        ArrayAdapter adapter = new ArrayAdapter(mContext,
-                android.R.layout.simple_list_item_1, list);
+        Comment[] childrenComments = list.toArray(new Comment[list.size()]);
+
+
+        ArrayAdapter adapter = new ChildrenCommentsListVewAdapter(mContext,
+                R.layout.childrencomment_item, childrenComments);
         holder.listView.setAdapter(adapter);
-
     }
 
     @Override
@@ -84,6 +95,14 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
     }
 
 
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+
+
+
     /**
      *
      */
@@ -98,7 +117,7 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
         TextView textViewContent;
 
-        ListView listView;
+        CommentListView listView;
 
 
         public CommentsAdapter(View itemView) {
@@ -112,7 +131,7 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
             textViewContent = (TextView) itemView.findViewById(R.id.comment_content);
 
-            listView = (ListView) itemView.findViewById(R.id.testlist);
+            listView = (CommentListView) itemView.findViewById(R.id.testlist);
 
         }
     }

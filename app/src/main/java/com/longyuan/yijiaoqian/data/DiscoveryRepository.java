@@ -16,7 +16,7 @@ public class DiscoveryRepository {
 
     static {
         mDiscoveries = new ArrayList<Discovery>();
-        Discovery discovery = new Discovery(1,"Discovery 1","","SubTitle 1");
+        Discovery discovery = new Discovery("1","Discovery 1","","SubTitle 1");
 
         discovery.addComment(new Comment("TestContent","XU"));
 
@@ -26,11 +26,11 @@ public class DiscoveryRepository {
 
         mDiscoveries.add(discovery);
 
-        mDiscoveries.add(new Discovery(2,"Discovery 2","","SubTitle 2"));
-        mDiscoveries.add(new Discovery(3,"Discovery 3","","SubTitle 3"));
-        mDiscoveries.add(new Discovery(4,"Discovery 4","","SubTitle 4"));
-        mDiscoveries.add(new Discovery(5,"Discovery 5","","SubTitle 5"));
-        mDiscoveries.add(new Discovery(6,"Discovery 6","","SubTitle 6"));
+        mDiscoveries.add(new Discovery("2","Discovery 2","","SubTitle 2"));
+        mDiscoveries.add(new Discovery("3","Discovery 3","","SubTitle 3"));
+        mDiscoveries.add(new Discovery("4","Discovery 4","","SubTitle 4"));
+        mDiscoveries.add(new Discovery("5","Discovery 5","","SubTitle 5"));
+        mDiscoveries.add(new Discovery("6","Discovery 6","","SubTitle 6"));
     }
 
     private DiscoveryRepository() {
@@ -49,13 +49,13 @@ public class DiscoveryRepository {
 
     }
 
-    public Discovery getDiscovery(int DiscoveryId, boolean addWatched) {
+    public Discovery getDiscovery(String DiscoveryId, boolean addWatched) {
 
         Discovery discovery = null;
 
         for (Discovery element : mDiscoveries) {
 
-            if (element.getId() == DiscoveryId) {
+            if (element.getId().equals(DiscoveryId)) {
                 if(addWatched) {
                     element.setWatchedCount(element.getWatchedCount() + 1);
                 }
@@ -67,12 +67,12 @@ public class DiscoveryRepository {
         return  discovery;
     }
 
-    public Discovery getDiscovery(int DiscoveryId) {
+    public Discovery getDiscovery(String DiscoveryId) {
 
         return  getDiscovery(DiscoveryId,true);
     }
 
-    public int addFav(int DiscoveryId){
+    public int addFav(String DiscoveryId){
 
 
         Discovery discovery = getDiscovery(DiscoveryId,false);
@@ -96,7 +96,7 @@ public class DiscoveryRepository {
     }
 
 
-    public List<Comment> getComments(int DiscoveryId) {
+    public List<Comment> getComments(String DiscoveryId) {
 
         List<Comment> commentList = new ArrayList<Comment>();
 
@@ -112,7 +112,7 @@ public class DiscoveryRepository {
         mDiscoveries.add(Discovery);
     }
 
-    public List<Comment> addComment(int DiscoveryId,Comment comment){
+    public List<Comment> addComment(String DiscoveryId,Comment comment){
 
         Discovery discovery = getDiscovery(DiscoveryId,false);
 

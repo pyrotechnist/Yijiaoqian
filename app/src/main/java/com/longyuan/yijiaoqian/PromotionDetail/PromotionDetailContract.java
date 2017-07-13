@@ -18,7 +18,7 @@ public class PromotionDetailContract {
 
         void start();
 
-        Promotion loadPromotion(int PromotionId);
+        Promotion loadPromotion(String PromotionId);
 
     }
 }

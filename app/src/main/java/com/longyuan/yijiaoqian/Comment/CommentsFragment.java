@@ -16,7 +16,9 @@ import android.widget.TextView;
 
 import com.longyuan.yijiaoqian.R;
 import com.longyuan.yijiaoqian.data.Comment;
+import com.longyuan.yijiaoqian.data.DisplayData;
 import com.longyuan.yijiaoqian.utils.CommentsRecyclerViewAdapter;
+import com.longyuan.yijiaoqian.utils.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +81,14 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
         });
 
         mCommentsRecyclerViewAdapter = new CommentsRecyclerViewAdapter(new ArrayList<Comment>(0));
+
+        mCommentsRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(DisplayData item) {
+                String author = item.getContributor();
+                mEditTextComment.setText("@"+author);
+            }
+        });
 
         mRecyclerViewComments.setLayoutManager(new LinearLayoutManager(mRecyclerViewComments.getContext()));
         mRecyclerViewComments.setAdapter(mCommentsRecyclerViewAdapter);

@@ -67,7 +67,7 @@ public class PromotionDetailActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        int promotionId = intent.getIntExtra(PromotionsFragment.EXTRA_MESSAGE_NAME,1);
+        String promotionId = intent.getStringExtra(PromotionsFragment.EXTRA_MESSAGE_NAME);
 
        PromotionDetailFragment promotionDetailFragment =  (PromotionDetailFragment) getSupportFragmentManager().findFragmentById(R.id.promotion_detail_fragcontent);
 

@@ -19,7 +19,7 @@ public class CommentsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        int discoveryId = getIntent().getIntExtra(EXTRA_MESSAGE_NAME,1);
+        String discoveryId = getIntent().getStringExtra(EXTRA_MESSAGE_NAME);
 
         CommentsFragment commentsFragment = (CommentsFragment)getSupportFragmentManager().findFragmentById(R.id.comments_fragcontent);
 

@@ -114,7 +114,7 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
             @Override
             public void onRefresh() {
 
-                mPromotionsRepository.addPromotion(new Promotion(10,"Better 10","", Category.Better));
+                mPromotionsRepository.addPromotion(new Promotion("10","Better 10","", Category.Better));
                 mPromotions = mPromotionsRepository.getPromotions(mCategory);
                 //mPromotionsRecyclerViewAdapter = new PromotionsRecyclerViewAdapter(mPromotions,getContext());
                 //mRecyclerView.setAdapter(mPromotionsRecyclerViewAdapter);

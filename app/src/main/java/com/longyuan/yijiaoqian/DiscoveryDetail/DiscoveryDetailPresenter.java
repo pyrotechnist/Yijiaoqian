@@ -13,15 +13,13 @@ public class DiscoveryDetailPresenter implements DiscoveryDetailContract.Present
 
     private DiscoveryDetailContract.View mDiscoveryDetailView;
 
-
-
     private DiscoveryRepository mDiscoveryRepository;
 
     private Discovery  mDiscovery ;
 
-    private int  mDiscoveryId ;
+    private String  mDiscoveryId ;
 
-    public DiscoveryDetailPresenter(int DiscoveryId,DiscoveryRepository discoveryRepository, DiscoveryDetailContract.View view){
+    public DiscoveryDetailPresenter(String DiscoveryId,DiscoveryRepository discoveryRepository, DiscoveryDetailContract.View view){
 
         mDiscoveryId = DiscoveryId;
 
@@ -40,7 +38,7 @@ public class DiscoveryDetailPresenter implements DiscoveryDetailContract.Present
     }
 
     @Override
-    public Discovery loadDiscoveryDetail(int discoveryId)  {
+    public Discovery loadDiscoveryDetail(String discoveryId)  {
 
         return  mDiscoveryRepository.getDiscovery(discoveryId);
 

@@ -114,7 +114,7 @@ public class DiscoveryDetailFragment extends Fragment implements DiscoveryDetail
     @Override
     public void displayDiscoveryDetail(Discovery discovery) {
 
-        textViewId.setText(Integer.toString(discovery.getId()));
+        textViewId.setText(discovery.getId());
 
         textViewTitile.setText(discovery.getTitle());
 
@@ -133,7 +133,7 @@ public class DiscoveryDetailFragment extends Fragment implements DiscoveryDetail
     }
 
     @Override
-    public void displayComments(int discoveryId) {
+    public void displayComments(String discoveryId) {
 
         Intent intent = new Intent(getContext(), CommentsActivity.class);
 

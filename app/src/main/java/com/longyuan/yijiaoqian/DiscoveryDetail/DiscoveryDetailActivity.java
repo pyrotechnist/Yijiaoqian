@@ -52,7 +52,7 @@ public class DiscoveryDetailActivity extends AppCompatActivity {
 
         Intent intent  = getIntent();
 
-        int discoveryId = intent.getIntExtra(DiscoveriesFragment.EXTRA_MESSAGE_NAME,1);
+        String discoveryId = intent.getStringExtra(DiscoveriesFragment.EXTRA_MESSAGE_NAME);
 
         DiscoveryDetailFragment discoveryDetailFragment = (DiscoveryDetailFragment)getSupportFragmentManager().findFragmentById(R.id.discovery_detail_fragcontent);
 

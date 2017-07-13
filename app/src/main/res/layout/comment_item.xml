@@ -49,14 +49,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <ListView
+            <com.longyuan.yijiaoqian.utils.CommentListView
                 android:id="@+id/testlist"
                 style="@style/CodeFont.Small"
                 android:background="@android:color/holo_green_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-            </ListView>
+            </com.longyuan.yijiaoqian.utils.CommentListView>
 
         </LinearLayout>
     </LinearLayout>

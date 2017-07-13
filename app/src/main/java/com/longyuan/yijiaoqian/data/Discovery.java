@@ -12,7 +12,7 @@ import java.util.List;
 public class Discovery extends DisplayData{
 
 
-    public Discovery(int id ,String title, String image,String subTitile) {
+    public Discovery(String id ,String title, String image,String subTitile) {
         this.id = id;
         this.image = image;
         this.title = title;
@@ -20,10 +20,7 @@ public class Discovery extends DisplayData{
         this.comments = new ArrayList<Comment>();
     }
 
-
     private List<Comment> comments;
-
-    private String contributor;
 
     private String subTitile;
 
@@ -37,14 +34,6 @@ public class Discovery extends DisplayData{
 
     public void setSubTitile(String subTitile) {
         this.subTitile = subTitile;
-    }
-
-    public String getContributor() {
-        return contributor;
-    }
-
-    public void setContributor(String contributor) {
-        this.contributor = contributor;
     }
 
     public int getFavCount() {

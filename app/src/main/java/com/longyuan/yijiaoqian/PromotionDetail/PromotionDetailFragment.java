@@ -43,7 +43,7 @@ public class PromotionDetailFragment extends Fragment implements PromotionDetail
     @Override
     public void displayPromotionDetail(Promotion promotion) {
 
-       mDetailId.setText(Integer.toString(promotion.getId()));
+       mDetailId.setText(promotion.getId());
 
        mDetailTitle.setText(promotion.getTitle());
 

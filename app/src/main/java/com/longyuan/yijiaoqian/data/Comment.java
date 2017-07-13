@@ -10,7 +10,7 @@ import java.util.UUID;
  * Created by loxu on 10/07/2017.
  */
 
-public class Comment {
+public class Comment extends DisplayData{
 
 
     public Comment(String content, String contributor) {
@@ -20,11 +20,7 @@ public class Comment {
         this.date = getRandomDate();
     }
 
-    private String id;
-
     private String content;
-
-    private String contributor;
 
     private Date date;
 
@@ -52,10 +48,6 @@ public class Comment {
 
     public void setContributor(String contributor) {
         this.contributor = contributor;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getParentComment() {

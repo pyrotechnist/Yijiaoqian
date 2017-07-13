@@ -8,7 +8,7 @@ import com.longyuan.yijiaoqian.utils.Category;
 
 public class Promotion extends DisplayData {
 
-    public Promotion(int id ,String title, String image, Category category) {
+    public Promotion(String id ,String title, String image, Category category) {
         this.id = id;
         this.image = image;
         this.title = title;

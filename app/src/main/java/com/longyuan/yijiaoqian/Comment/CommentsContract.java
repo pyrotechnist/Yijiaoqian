@@ -23,7 +23,7 @@ public class CommentsContract {
 
         void addComment(Comment comment);
 
-        List<Comment> loadComments(int discoveryId);
+        List<Comment> loadComments(String discoveryId);
 
     }
 }

@@ -15,9 +15,9 @@ public class CommentsPresenter implements CommentsContract.Presenter {
 
     private CommentsContract.View mCommentsView;
 
-    private int mDiscoveryId;
+    private String mDiscoveryId;
 
-    public CommentsPresenter(int discoveryId, DiscoveryRepository discoveryRepository, CommentsContract.View view) {
+    public CommentsPresenter(String discoveryId, DiscoveryRepository discoveryRepository, CommentsContract.View view) {
 
         mDiscoveryId = discoveryId;
 
@@ -47,7 +47,7 @@ public class CommentsPresenter implements CommentsContract.Presenter {
     }
 
     @Override
-    public List<Comment> loadComments(int discoveryId) {
+    public List<Comment> loadComments(String discoveryId) {
         return mDiscoveryRepository.getDiscovery(discoveryId).getComments();
     }
 }

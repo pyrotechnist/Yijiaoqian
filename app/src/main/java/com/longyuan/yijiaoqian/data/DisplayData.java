@@ -6,13 +6,15 @@ package com.longyuan.yijiaoqian.data;
 
 public class DisplayData {
 
-    int id;
+    String id;
 
     String image;
 
     String title;
 
-    private int watchedCount;
+    int watchedCount;
+
+    String contributor;
 
     public int getWatchedCount() {
         return watchedCount;
@@ -22,11 +24,11 @@ public class DisplayData {
         this.watchedCount = watchedCount;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -44,5 +46,13 @@ public class DisplayData {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getContributor() {
+        return contributor;
+    }
+
+    public void setContributor(String contributor) {
+        this.contributor = contributor;
     }
 }

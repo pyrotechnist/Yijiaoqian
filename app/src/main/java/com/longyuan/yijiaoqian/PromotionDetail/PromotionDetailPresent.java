@@ -13,13 +13,13 @@ public class PromotionDetailPresent implements PromotionDetailContract.Presenter
 
     private final PromotionDetailContract.View mPromotionDetailView;
 
-    private int mPromotionId;
+    private String mPromotionId;
 
     private Promotion mPromotion;
 
 
 
-    public PromotionDetailPresent(int promotionId, PromotionsRepository promotionsRepository, PromotionDetailContract.View promotionDetailFragment) {
+    public PromotionDetailPresent(String promotionId, PromotionsRepository promotionsRepository, PromotionDetailContract.View promotionDetailFragment) {
 
         mPromotionId = promotionId;
 
@@ -39,7 +39,7 @@ public class PromotionDetailPresent implements PromotionDetailContract.Presenter
     }
 
     @Override
-    public Promotion loadPromotion(int PromotionId) {
+    public Promotion loadPromotion(String PromotionId) {
 
         return mPromotionsRepository.getPromotion(mPromotionId);
     }
