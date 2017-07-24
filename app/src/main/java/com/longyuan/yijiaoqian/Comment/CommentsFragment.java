@@ -90,6 +90,14 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
             }
         });
 
+        mCommentsRecyclerViewAdapter.setmOnItemClickListenerChildrenComments(new OnItemClickListener() {
+            @Override
+            public void onItemClick(DisplayData item) {
+                String author = item.getContributor();
+                mEditTextComment.setText("%"+author);
+            }
+        });
+
         mRecyclerViewComments.setLayoutManager(new LinearLayoutManager(mRecyclerViewComments.getContext()));
         mRecyclerViewComments.setAdapter(mCommentsRecyclerViewAdapter);
 

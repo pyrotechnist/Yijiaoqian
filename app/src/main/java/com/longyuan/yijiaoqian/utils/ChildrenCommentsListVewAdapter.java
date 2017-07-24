@@ -27,6 +27,10 @@ public class ChildrenCommentsListVewAdapter extends ArrayAdapter<Comment> {
 
     private Comment[] mCommentList;
 
+
+
+    private OnItemClickListener mOnItemClickListenerChildrenCommentsListView;
+
     public ChildrenCommentsListVewAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull Comment[] objects) {
         super(context, resource, objects);
         mCommentList =  objects;
@@ -43,7 +47,18 @@ public class ChildrenCommentsListVewAdapter extends ArrayAdapter<Comment> {
             rowView = inflater.inflate(R.layout.childrencomment_item, parent, false);
         }
 
-        Comment comment = mCommentList[position];
+
+
+
+
+        final Comment comment = mCommentList[position];
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClickListenerChildrenCommentsListView.onItemClick(comment);
+            }
+        };
 
         ImageView image = (ImageView) rowView.findViewById(R.id.childrencomment_logo);
 
@@ -54,5 +69,9 @@ public class ChildrenCommentsListVewAdapter extends ArrayAdapter<Comment> {
         text.setText(comment.getContent());
 
         return rowView;
+    }
+
+    public void setmOnItemClickListenerChildrenCommentsListView(OnItemClickListener mOnItemClickListenerChildrenCommentsListView) {
+        this.mOnItemClickListenerChildrenCommentsListView = mOnItemClickListenerChildrenCommentsListView;
     }
 }

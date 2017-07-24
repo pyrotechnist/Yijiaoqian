@@ -28,6 +28,10 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
     private Context mContext;
 
+    private OnItemClickListener mOnItemClickListener;
+
+    private OnItemClickListener mOnItemClickListenerChildrenComments;
+
     public CommentsRecyclerViewAdapter(List<Comment> mComments) {
         this.mComments = mComments;
     }
@@ -99,9 +103,10 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
-    private OnItemClickListener mOnItemClickListener;
 
-
+    public void setmOnItemClickListenerChildrenComments(OnItemClickListener mOnItemClickListenerChildrenComments) {
+        this.mOnItemClickListenerChildrenComments = mOnItemClickListenerChildrenComments;
+    }
 
     /**
      *
