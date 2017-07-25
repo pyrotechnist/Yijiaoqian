@@ -45,7 +45,7 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
 
     private Comment mChildComment;
 
-    private Boolean mIsCurentCommentIsChildComment;
+    private Boolean mIsCurentCommentIsChildComment = false;
 
     public static CommentsFragment getInstance (){
         return  new CommentsFragment();
@@ -90,9 +90,9 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
                 else{
                     comment = new Comment(text,"haoyang",true);
 
+                    mPesenter.addChildComment(mParentComment,comment);
+
                 }
-
-
 
                 mEditTextComment.setText("");
 
@@ -108,6 +108,7 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
             public void onItemClick(DisplayData item) {
                 String author = item.getContributor();
                 mParentComment = (Comment) item;
+                mIsCurentCommentIsChildComment = true;
                 mEditTextComment.setText("@"+author);
             }
         });

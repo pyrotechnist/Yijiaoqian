@@ -48,7 +48,7 @@ public class Comment extends DisplayData{
     }
 
     public void addChildrenComments(Comment childrenComment) {
-        if(!this.isChildrenComment && this.childrenComments != null)
+        if(!this.isChildrenComment && this.childrenComments == null)
         {
             this.childrenComments = new ArrayList<Comment>();
         }

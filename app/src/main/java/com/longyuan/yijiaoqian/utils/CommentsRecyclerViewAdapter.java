@@ -68,21 +68,23 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
         holder.textViewAuthor.setText(comment.getContributor());
 
-        ArrayList<Comment> list = new ArrayList<Comment>();
+        List<Comment> list = comment.getChildrenComments();
 
-        list.add(new Comment("AAA","XU"));
+        //list.add(new Comment("AAA","XU"));
 
-        list.add(new Comment("BBB","Yang"));
+        //list.add(new Comment("BBB","Yang"));
 
-        Comment[] childrenComments = list.toArray(new Comment[list.size()]);
+        if(list != null) {
 
+            Comment[] childrenComments = list.toArray(new Comment[list.size()]);
 
-        ArrayAdapter adapter = new ChildrenCommentsListVewAdapter(mContext,
-                R.layout.childrencomment_item, childrenComments);
+            ArrayAdapter adapter = new ChildrenCommentsListVewAdapter(mContext,
+                    R.layout.childrencomment_item, childrenComments);
 
-        ((ChildrenCommentsListVewAdapter)adapter).setmOnItemClickListenerChildrenCommentsListView(mOnItemClickListenerChildrenComments);
+            ((ChildrenCommentsListVewAdapter) adapter).setmOnItemClickListenerChildrenCommentsListView(mOnItemClickListenerChildrenComments);
 
-        holder.listView.setAdapter(adapter);
+            holder.listView.setAdapter(adapter);
+        }
     }
 
     @Override

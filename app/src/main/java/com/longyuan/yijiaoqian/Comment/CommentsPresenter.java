@@ -50,6 +50,7 @@ public class CommentsPresenter implements CommentsContract.Presenter {
     public void addChildComment(Comment parentComment, Comment childrenComment) {
         parentComment.addChildrenComments(childrenComment);
 
+        mCommentsView.displayComments(loadComments(mDiscoveryId));
     }
 
     @Override
