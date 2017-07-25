@@ -1,8 +1,10 @@
 package com.longyuan.yijiaoqian.data;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -14,10 +16,15 @@ public class Comment extends DisplayData{
 
 
     public Comment(String content, String contributor) {
+        this(content,contributor,false);
+    }
+
+    public Comment(String content, String contributor, Boolean isChildrenComment) {
         this.id = UUID.randomUUID().toString();
         this.content = content;
         this.contributor = contributor;
         this.date = getRandomDate();
+        this.isChildrenComment = isChildrenComment;
     }
 
     private String content;
@@ -25,6 +32,29 @@ public class Comment extends DisplayData{
     private Date date;
 
     private String parentComment;
+
+    private Boolean isChildrenComment;
+
+    private List<Comment> childrenComments;
+
+
+    public List<Comment> getChildrenComments() {
+
+        if(!isChildrenComment) {
+            return childrenComments;
+        }
+
+        return  null;
+    }
+
+    public void addChildrenComments(Comment childrenComment) {
+        if(!this.isChildrenComment && this.childrenComments != null)
+        {
+            this.childrenComments = new ArrayList<Comment>();
+        }
+
+        this.childrenComments.add(childrenComment);
+    }
 
     public Date getDate() {
         return date;
@@ -56,6 +86,14 @@ public class Comment extends DisplayData{
 
     public void setParentComment(String parentComment) {
         this.parentComment = parentComment;
+    }
+
+    public Boolean isChildrenComment() {
+        return isChildrenComment;
+    }
+
+    public void setChildrenComment(boolean childrenComment) {
+        isChildrenComment = childrenComment;
     }
 
     private Date getRandomDate(){

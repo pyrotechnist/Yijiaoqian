@@ -47,6 +47,12 @@ public class CommentsPresenter implements CommentsContract.Presenter {
     }
 
     @Override
+    public void addChildComment(Comment parentComment, Comment childrenComment) {
+        parentComment.addChildrenComments(childrenComment);
+
+    }
+
+    @Override
     public List<Comment> loadComments(String discoveryId) {
         return mDiscoveryRepository.getDiscovery(discoveryId).getComments();
     }

@@ -41,6 +41,12 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
 
     private ImageView mImageView;
 
+    private Comment mParentComment;
+
+    private Comment mChildComment;
+
+    private Boolean mIsCurentCommentIsChildComment;
+
     public static CommentsFragment getInstance (){
         return  new CommentsFragment();
     }
@@ -73,9 +79,24 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
             @Override
             public void onClick(View view) {
                 String text = mEditTextComment.getText().toString();
-                Comment comment = new Comment(text,"haoyang");
+
+                Comment comment = null;
+
+                if(!mIsCurentCommentIsChildComment)
+                {
+                    comment = new Comment(text,"haoyang");
+                    mPesenter.addComment(comment);
+                }
+                else{
+                    comment = new Comment(text,"haoyang",true);
+
+                }
+
+
+
                 mEditTextComment.setText("");
-                mPesenter.addComment(comment);
+
+                mIsCurentCommentIsChildComment = false;
 
             }
         });
@@ -86,6 +107,7 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
             @Override
             public void onItemClick(DisplayData item) {
                 String author = item.getContributor();
+                mParentComment = (Comment) item;
                 mEditTextComment.setText("@"+author);
             }
         });
@@ -94,7 +116,9 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
             @Override
             public void onItemClick(DisplayData item) {
                 String author = item.getContributor();
-                mEditTextComment.setText("%"+author);
+                mChildComment = (Comment) item;
+                mIsCurentCommentIsChildComment = true;
+                mEditTextComment.setText("@"+author);
             }
         });
 

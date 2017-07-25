@@ -23,6 +23,8 @@ public class CommentsContract {
 
         void addComment(Comment comment);
 
+        void addChildComment(Comment parentComment, Comment childrenComment);
+
         List<Comment> loadComments(String discoveryId);
 
     }

@@ -79,6 +79,9 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
         ArrayAdapter adapter = new ChildrenCommentsListVewAdapter(mContext,
                 R.layout.childrencomment_item, childrenComments);
+
+        ((ChildrenCommentsListVewAdapter)adapter).setmOnItemClickListenerChildrenCommentsListView(mOnItemClickListenerChildrenComments);
+
         holder.listView.setAdapter(adapter);
     }
 

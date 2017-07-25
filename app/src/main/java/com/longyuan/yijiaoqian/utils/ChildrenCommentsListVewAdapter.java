@@ -60,6 +60,8 @@ public class ChildrenCommentsListVewAdapter extends ArrayAdapter<Comment> {
             }
         };
 
+        rowView.setOnClickListener(listener);
+
         ImageView image = (ImageView) rowView.findViewById(R.id.childrencomment_logo);
 
         TextView text = (TextView) rowView.findViewById(R.id.childrencomment_content);
