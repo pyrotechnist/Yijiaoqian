@@ -3,6 +3,7 @@ package com.longyuan.yijiaoqian.data;
 import com.longyuan.yijiaoqian.utils.Category;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -117,6 +118,25 @@ public class DiscoveryRepository {
         Discovery discovery = getDiscovery(DiscoveryId,false);
 
         discovery.getComments().add(comment);
+
+        return  discovery.getComments();
+    }
+
+    public List<Comment> removeComment(String DiscoveryId,String commentId){
+
+        Discovery discovery = getDiscovery(DiscoveryId,false);
+
+        Iterator<Comment> itr = discovery.getComments().iterator();
+
+        while (itr.hasNext())
+        {
+            Comment comment = itr.next();
+
+            if(comment.getId() == commentId)
+            {
+                discovery.getComments().remove(comment);
+            }
+        }
 
         return  discovery.getComments();
     }

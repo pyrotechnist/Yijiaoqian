@@ -30,7 +30,11 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
     private OnItemClickListener mOnItemClickListener;
 
+    private OnItemLongClickListener mOnItemLongClickListener;
+
     private OnItemClickListener mOnItemClickListenerChildrenComments;
+
+    private OnItemLongClickListener mOnItemLongClickListenerChildrenComments;
 
     public CommentsRecyclerViewAdapter(List<Comment> mComments) {
         this.mComments = mComments;
@@ -60,6 +64,17 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
         holder.itemView.setOnClickListener(listener);
 
+        View.OnLongClickListener longclickListener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mOnItemLongClickListener.onItemLongClick(comment);
+                return true;
+            }
+        };
+
+        holder.itemView.setOnLongClickListener(longclickListener);
+
+
         holder.textViewContent.setText(comment.getContent());
 
         String dateDiff  = DateHelper.dateDifference(comment.getDate(), Calendar.getInstance().getTime());
@@ -82,6 +97,7 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
                     R.layout.childrencomment_item, childrenComments);
 
             ((ChildrenCommentsListVewAdapter) adapter).setmOnItemClickListenerChildrenCommentsListView(mOnItemClickListenerChildrenComments);
+            ((ChildrenCommentsListVewAdapter) adapter).setmOnItemLongClickListenerChildrenCommentsListView(mOnItemLongClickListenerChildrenComments);
 
             holder.listView.setAdapter(adapter);
         }
@@ -111,6 +127,14 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRe
 
     public void setmOnItemClickListenerChildrenComments(OnItemClickListener mOnItemClickListenerChildrenComments) {
         this.mOnItemClickListenerChildrenComments = mOnItemClickListenerChildrenComments;
+    }
+
+    public void setmOnItemLongClickListener(OnItemLongClickListener mOnItemLongClickListener) {
+        this.mOnItemLongClickListener = mOnItemLongClickListener;
+    }
+
+    public void setmOnItemLongClickListenerChildrenComments(OnItemLongClickListener mOnItemLongClickListenerChildrenComments) {
+        this.mOnItemLongClickListenerChildrenComments = mOnItemLongClickListenerChildrenComments;
     }
 
     /**

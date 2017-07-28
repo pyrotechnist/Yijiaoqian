@@ -19,6 +19,7 @@ import com.longyuan.yijiaoqian.data.Comment;
 import com.longyuan.yijiaoqian.data.DisplayData;
 import com.longyuan.yijiaoqian.utils.CommentsRecyclerViewAdapter;
 import com.longyuan.yijiaoqian.utils.OnItemClickListener;
+import com.longyuan.yijiaoqian.utils.OnItemLongClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,11 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
 
     private Comment mChildComment;
 
+    private String mCommentto;
+
     private Boolean mIsCurentCommentIsChildComment = false;
+
+    private Boolean mIsCurentCommentReplaytoChildComment = false;
 
     public static CommentsFragment getInstance (){
         return  new CommentsFragment();
@@ -80,6 +85,13 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
             public void onClick(View view) {
                 String text = mEditTextComment.getText().toString();
 
+                if(!mIsCurentCommentReplaytoChildComment)
+                {
+                    text = text.replace(mCommentto,"");
+                    mCommentto = "";
+                }
+
+
                 Comment comment = null;
 
                 if(!mIsCurentCommentIsChildComment)
@@ -109,9 +121,17 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
                 String author = item.getContributor();
                 mParentComment = (Comment) item;
                 mIsCurentCommentIsChildComment = true;
-                mEditTextComment.setText("@"+author);
+                mCommentto = "@"+author;
+                mEditTextComment.setText(mCommentto+ " ");
             }
         });
+
+        mCommentsRecyclerViewAdapter.setmOnItemLongClickListener(new OnItemLongClickListener(){
+            @Override
+            public void onItemLongClick(DisplayData item) {
+                mPesenter.removeComment(item.getId());
+                     }
+                 });
 
         mCommentsRecyclerViewAdapter.setmOnItemClickListenerChildrenComments(new OnItemClickListener() {
             @Override
@@ -119,7 +139,15 @@ public class CommentsFragment extends Fragment implements CommentsContract.View{
                 String author = item.getContributor();
                 mChildComment = (Comment) item;
                 mIsCurentCommentIsChildComment = true;
-                mEditTextComment.setText("@"+author);
+                mIsCurentCommentReplaytoChildComment = true;
+                mEditTextComment.setText("@"+author+ " ");
+            }
+        });
+
+        mCommentsRecyclerViewAdapter.setmOnItemLongClickListenerChildrenComments(new OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(DisplayData item) {
+                mPesenter.removeComment(item.getId());
             }
         });
 

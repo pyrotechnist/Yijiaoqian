@@ -25,6 +25,8 @@ public class CommentsContract {
 
         void addChildComment(Comment parentComment, Comment childrenComment);
 
+        void removeComment(String commmentId);
+
         List<Comment> loadComments(String discoveryId);
 
     }

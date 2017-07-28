@@ -28,6 +28,7 @@ public class ChildrenCommentsListVewAdapter extends ArrayAdapter<Comment> {
     private Comment[] mCommentList;
 
 
+    private OnItemLongClickListener mOnItemLongClickListenerChildrenCommentsListView;
 
     private OnItemClickListener mOnItemClickListenerChildrenCommentsListView;
 
@@ -62,6 +63,16 @@ public class ChildrenCommentsListVewAdapter extends ArrayAdapter<Comment> {
 
         rowView.setOnClickListener(listener);
 
+        View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mOnItemLongClickListenerChildrenCommentsListView.onItemLongClick(comment);
+                return false;
+            }
+        };
+
+        rowView.setOnLongClickListener(longClickListener);
+
         ImageView image = (ImageView) rowView.findViewById(R.id.childrencomment_logo);
 
         TextView text = (TextView) rowView.findViewById(R.id.childrencomment_content);
@@ -75,5 +86,9 @@ public class ChildrenCommentsListVewAdapter extends ArrayAdapter<Comment> {
 
     public void setmOnItemClickListenerChildrenCommentsListView(OnItemClickListener mOnItemClickListenerChildrenCommentsListView) {
         this.mOnItemClickListenerChildrenCommentsListView = mOnItemClickListenerChildrenCommentsListView;
+    }
+
+    public void setmOnItemLongClickListenerChildrenCommentsListView(OnItemLongClickListener mOnItemLongClickListenerChildrenCommentsListView) {
+        this.mOnItemLongClickListenerChildrenCommentsListView = mOnItemLongClickListenerChildrenCommentsListView;
     }
 }

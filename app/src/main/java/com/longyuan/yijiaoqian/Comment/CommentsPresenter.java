@@ -47,6 +47,15 @@ public class CommentsPresenter implements CommentsContract.Presenter {
     }
 
     @Override
+    public void removeComment(String commentId) {
+
+        List<Comment> commentList = mDiscoveryRepository.removeComment(mDiscoveryId,commentId);
+
+        mCommentsView.displayComments(commentList);
+
+    }
+
+    @Override
     public void addChildComment(Comment parentComment, Comment childrenComment) {
         parentComment.addChildrenComments(childrenComment);
 
