@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.longyuan.yijiaoqian.PromotionDetail.PromotionDetailActivity;
 import com.longyuan.yijiaoqian.data.DisplayData;
+import com.longyuan.yijiaoqian.data.LoadDataCallback;
 import com.longyuan.yijiaoqian.data.Promotion;
 import com.longyuan.yijiaoqian.data.PromotionsRepository;
 import com.longyuan.yijiaoqian.utils.Category;
@@ -97,7 +98,17 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
 
 
 
-        mPromotions = mPromotionsRepository.getPromotions(mCategory);
+        mPromotionsRepository.getPromotions(mCategory, new LoadDataCallback() {
+            @Override
+            public void onTasksLoaded(List<Promotion> promotions) {
+                mPromotions = promotions;
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+
+            }
+        });
 
         mPromotionsRecyclerViewAdapter = new PromotionsRecyclerViewAdapter(mPromotions,getContext());
 
@@ -114,12 +125,12 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
             @Override
             public void onRefresh() {
 
-                mPromotionsRepository.addPromotion(new Promotion("10","Better 10","", Category.Better));
+               /* mPromotionsRepository.addPromotion(new Promotion("10","Better 10","", Category.Better));
                 mPromotions = mPromotionsRepository.getPromotions(mCategory);
                 //mPromotionsRecyclerViewAdapter = new PromotionsRecyclerViewAdapter(mPromotions,getContext());
                 //mRecyclerView.setAdapter(mPromotionsRecyclerViewAdapter);
                 mPromotionsRecyclerViewAdapter.setFilter(mPromotions);
-                mSwipeRefreshLayout.setRefreshing(false);
+                mSwipeRefreshLayout.setRefreshing(false);*/
             }
         });
 
@@ -153,10 +164,10 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
     }
 
 
-    private List<Promotion> loadPromotions(Category categoty) {
+  /*  private List<Promotion> loadPromotions(Category categoty) {
 
         return mPromotionsRepository.getPromotions(categoty);
-    }
+    }*/
 
     public void setPromotionsRepository(PromotionsRepository mPromotionsRepository) {
         this.mPromotionsRepository = mPromotionsRepository;

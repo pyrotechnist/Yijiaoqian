@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface LoadDataCallback {
 
-    void onTasksLoaded(List<DisplayData> datas);
+    void onTasksLoaded(List<Promotion> datas);
 
     void onDataNotAvailable();
 }
