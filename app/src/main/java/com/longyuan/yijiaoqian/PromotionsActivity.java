@@ -92,6 +92,7 @@ public class PromotionsActivity extends AppCompatActivity {
         promotionsFragment2.setPromotionsRepository(mPromotionsRepository);
         promotionsFragment2.setCategory(Category.Good);
         adapter.addFragment(promotionsFragment2, "Category 2");
+
         viewPager.setAdapter(adapter);
     }
 

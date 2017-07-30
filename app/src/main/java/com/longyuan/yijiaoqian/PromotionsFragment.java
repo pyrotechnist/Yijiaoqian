@@ -45,7 +45,7 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
 
     private PromotionsRecyclerViewAdapter mPromotionsRecyclerViewAdapter;
 
-    private  List<Promotion> mPromotions;
+    private  List<Promotion> mPromotions = new ArrayList<>();
 
     private  SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -91,17 +91,18 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
     @Override
     public void onResume() {
         super.onResume();
+        loadData();
 
     }
 
-    private void setupRecyclerView( ) {
-
-
+    private void loadData(){
 
         mPromotionsRepository.getPromotions(mCategory, new LoadDataCallback() {
             @Override
             public void onTasksLoaded(List<Promotion> promotions) {
                 mPromotions = promotions;
+                mPromotionsRecyclerViewAdapter.replaceData(mPromotions);
+
             }
 
             @Override
@@ -109,6 +110,10 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
 
             }
         });
+
+    }
+
+    private void setupRecyclerView( ) {
 
         mPromotionsRecyclerViewAdapter = new PromotionsRecyclerViewAdapter(mPromotions,getContext());
 

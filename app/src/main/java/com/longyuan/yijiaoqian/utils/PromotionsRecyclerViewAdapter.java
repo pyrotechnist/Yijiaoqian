@@ -26,7 +26,7 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
     //private ImageView imageView;
     //private TextView textView;
 
-    private List<Promotion> promotionsList ;
+    private List<Promotion> mPromotionsList ;
 
     private Context context;
 
@@ -38,7 +38,7 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
 
 
     public PromotionsRecyclerViewAdapter(List<Promotion> promotionsList,Context context) {
-        this.promotionsList = promotionsList;
+        this.mPromotionsList = promotionsList;
         this.context = context;
     }
 
@@ -61,7 +61,7 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
     @Override
     public void onBindViewHolder(PromotionViewHolder holder, int position) {
 
-        final Promotion promotion  = promotionsList.get(position);
+        final Promotion promotion  = mPromotionsList.get(position);
 
         holder.textView.setText(promotion.getTitle());
 
@@ -90,10 +90,15 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
         //holder.imageView.setImageResource(android.R.drawable.arrow_up_float);
     }
 
+    public void replaceData(List<Promotion> promotionsList){
+        mPromotionsList = promotionsList;
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {
-        return promotionsList.size();
+        return mPromotionsList.size();
     }
 
     public static class PromotionViewHolder extends RecyclerView.ViewHolder{
@@ -112,8 +117,8 @@ public class PromotionsRecyclerViewAdapter extends RecyclerView.Adapter<Promotio
     }
 
     public void setFilter(List<Promotion> countryModels){
-        promotionsList = new ArrayList<>();
-        promotionsList.addAll(countryModels);
+        mPromotionsList = new ArrayList<>();
+        mPromotionsList.addAll(countryModels);
         notifyDataSetChanged();
     }
 }
