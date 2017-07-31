@@ -234,7 +234,7 @@ public class PromotionsRepository {
                         mCachedPromotionsBetter.clear();
 
                         for (Promotion item : promotions) {
-                            mCachedPromotionsBetter.put(item.getId(),promotion);
+                            mCachedPromotionsBetter.put(item.getId(),item);
                         }
                         mLoadDataCallbackBetter.onTasksLoaded(new ArrayList<Promotion>(mCachedPromotionsBetter.values()));
 
@@ -243,7 +243,7 @@ public class PromotionsRepository {
                         mCachedPromotionsGood.clear();
 
                         for (Promotion item : promotions) {
-                            mCachedPromotionsGood.put(item.getId(),promotion);
+                            mCachedPromotionsGood.put(item.getId(),item);
                         }
                         mLoadDataCallbackGood.onTasksLoaded(new ArrayList<Promotion>(mCachedPromotionsGood.values()));
                     }
