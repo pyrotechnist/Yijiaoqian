@@ -30,11 +30,11 @@ public class PromotionsRepository {
 
     private static Map<String,Promotion> mCachedPromotionsBetter = new LinkedHashMap<>();
 
-    private static LoadDataCallback mLoadDataCallback;
+    private static LoadDataCallback mLoadDataCallbackGood;
+
+    private static LoadDataCallback mLoadDataCallbackBetter;
 
     private ApiAction action;
-
-    private Category mCategory;
 
     private static  List<Promotion> mPromotions;
 
@@ -65,21 +65,28 @@ public class PromotionsRepository {
 
     public void getPromotions(Category category,LoadDataCallback callback, boolean forceUpdate) {
 
-        mLoadDataCallback = callback;
 
-        mCategory = category;
+
+        if(category == Category.Better)
+        {
+            mLoadDataCallbackBetter = callback;
+        }else
+        {
+            mLoadDataCallbackGood= callback;
+        }
+
 
         action = ApiAction.Find;
 
         if(!forceUpdate && !getPromotionsByCategory(category).isEmpty())
         {
-            mLoadDataCallback.onTasksLoaded(new ArrayList<Promotion>(getPromotionsByCategory(category).values()));
+            getCallbackByCategory(category).onTasksLoaded(new ArrayList<Promotion>(getPromotionsByCategory(category).values()));
 
         }else
         {
             OkHttpHandler okHttpHandler = new OkHttpHandler();
 
-            okHttpHandler.execute("http://10.0.2.2:1337/promotion");
+            okHttpHandler.execute("http://10.0.2.2:1337/promotion?category="+category.toString());
         }
 
         //List<Promotion> promotions = new ArrayList<Promotion>();
@@ -150,6 +157,20 @@ public class PromotionsRepository {
 
     }
 
+    private LoadDataCallback getCallbackByCategory(Category category){
+
+        if(category == Category.Better)
+        {
+            return mLoadDataCallbackBetter;
+        }else if(category == Category.Good)
+        {
+            return mLoadDataCallbackGood;
+        }
+
+        return null;
+
+    }
+
 
 
     /**
@@ -203,30 +224,40 @@ public class PromotionsRepository {
                 List<Promotion> promotions = gson.fromJson(s, new TypeToken<List<Promotion>>() {
                 }.getType());
 
-                mCachedPromotionsGood.clear();
 
-                mCachedPromotionsBetter.clear();
+                if(!promotions.isEmpty())
+                {
+                    Promotion promotion = promotions.get(0);
 
-                for (Promotion promotion : promotions) {
                     if(promotion.getCategory() == Category.Better)
                     {
-                        mCachedPromotionsBetter.put(promotion.getId(),promotion);
+                        mCachedPromotionsBetter.clear();
+
+                        for (Promotion item : promotions) {
+                            mCachedPromotionsBetter.put(item.getId(),promotion);
+                        }
+                        mLoadDataCallbackBetter.onTasksLoaded(new ArrayList<Promotion>(mCachedPromotionsBetter.values()));
+
                     }else if (promotion.getCategory() == Category.Good)
                     {
-                        mCachedPromotionsGood.put(promotion.getId(),promotion);
+                        mCachedPromotionsGood.clear();
 
+                        for (Promotion item : promotions) {
+                            mCachedPromotionsGood.put(item.getId(),promotion);
+                        }
+                        mLoadDataCallbackGood.onTasksLoaded(new ArrayList<Promotion>(mCachedPromotionsGood.values()));
                     }
                 }
-
-                mLoadDataCallback.onTasksLoaded(new ArrayList<Promotion>(getPromotionsByCategory(mCategory).values()));
 
             } else if (action == ApiAction.Destroy) {
                 Promotion promotion = gson.fromJson(s, Promotion.class);
 
                 if (promotion != null) {
                     //mCachedPromotions.remove(promotion.getId());
-                    getPromotionsByCategory(promotion.getCategory()).remove(promotion.getId());
-                    mLoadDataCallback.onTasksLoaded(new ArrayList<Promotion>(getPromotionsByCategory(promotion.getCategory()).values()));
+                    Category category = promotion.getCategory();
+
+                    getPromotionsByCategory(category).remove(promotion.getId());
+                    getCallbackByCategory(category).onTasksLoaded(new ArrayList<Promotion>(getPromotionsByCategory(category).values()));
                 }
             }
         }

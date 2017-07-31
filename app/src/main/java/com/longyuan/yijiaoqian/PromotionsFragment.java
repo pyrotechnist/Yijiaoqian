@@ -35,7 +35,7 @@ import java.util.Locale;
  * Created by loxu on 04/07/2017.
  */
 
-public class PromotionsFragment extends Fragment implements SearchView.OnQueryTextListener{
+public class PromotionsFragment extends Fragment implements SearchView.OnQueryTextListener,PromotionsContract.View{
 
     public static final String EXTRA_MESSAGE_NAME = "com.longyuan.yijiaoqian.MESSAGE_NAME";
 
@@ -50,6 +50,12 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
     private  SwipeRefreshLayout mSwipeRefreshLayout;
 
     private RecyclerView mRecyclerView;
+
+    private PromotionsContract.Presenter mPresenter;
+
+    public static PromotionsFragment getInstance() {
+        return  new PromotionsFragment();
+    }
 
 
     @Override
@@ -91,7 +97,7 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
     @Override
     public void onResume() {
         super.onResume();
-        loadData();
+        mPresenter.start();
 
     }
 
@@ -104,13 +110,18 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
                 mPromotionsRecyclerViewAdapter.replaceData(mPromotions);
 
             }
-
-            @Override
-            public void onDataNotAvailable() {
-
-            }
         });
 
+    }
+
+    @Override
+    public void setPresenter(PromotionsContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void displayPromnotions(List<Promotion> promotionList) {
+        mPromotionsRecyclerViewAdapter.replaceData(promotionList);
     }
 
     private void setupRecyclerView( ) {

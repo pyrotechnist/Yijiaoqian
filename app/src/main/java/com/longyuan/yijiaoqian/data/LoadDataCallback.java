@@ -10,7 +10,6 @@ public interface LoadDataCallback {
 
     void onTasksLoaded(List<Promotion> datas);
 
-    void onDataNotAvailable();
 }
 
 

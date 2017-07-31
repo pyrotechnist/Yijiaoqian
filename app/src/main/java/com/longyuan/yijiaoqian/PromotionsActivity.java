@@ -83,15 +83,26 @@ public class PromotionsActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
 
-        PromotionsFragment promotionsFragment1 = new PromotionsFragment();
-        promotionsFragment1.setPromotionsRepository(mPromotionsRepository);
-        promotionsFragment1.setCategory(Category.Better);
-        adapter.addFragment(promotionsFragment1, "Category 1");
+        PromotionsFragment promotionsFragment1 = PromotionsFragment.getInstance();
 
-        PromotionsFragment promotionsFragment2 = new PromotionsFragment();
-        promotionsFragment2.setPromotionsRepository(mPromotionsRepository);
-        promotionsFragment2.setCategory(Category.Good);
-        adapter.addFragment(promotionsFragment2, "Category 2");
+        new PromotionsPresenter(mPromotionsRepository,promotionsFragment1,Category.Better);
+
+        //promotionsFragment1.setPromotionsRepository(mPromotionsRepository);
+        //promotionsFragment1.setCategory(Category.Better);
+        adapter.addFragment(promotionsFragment1, "Better");
+
+
+
+
+        PromotionsFragment promotionsFragment2 = PromotionsFragment.getInstance();
+
+        new PromotionsPresenter(mPromotionsRepository,promotionsFragment2,Category.Good);
+
+        //promotionsFragment1.setPromotionsRepository(mPromotionsRepository);
+        //promotionsFragment1.setCategory(Category.Better);
+      /*  promotionsFragment2.setPromotionsRepository(mPromotionsRepository);
+        promotionsFragment2.setCategory(Category.Good);*/
+        adapter.addFragment(promotionsFragment2, "Good");
 
         viewPager.setAdapter(adapter);
     }
