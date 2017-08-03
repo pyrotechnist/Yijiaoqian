@@ -17,6 +17,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 
 /**
  * Created by loxu on 04/07/2017.
@@ -33,6 +39,10 @@ public class PromotionsRepository {
     private static LoadDataCallback mLoadDataCallbackGood;
 
     private static LoadDataCallback mLoadDataCallbackBetter;
+
+    private static Promotion promotion;
+
+    private static PromotionAPI mPromotionAPI;
 
     private ApiAction action;
 
@@ -65,6 +75,25 @@ public class PromotionsRepository {
 
     public void getPromotions(Category category,LoadDataCallback callback, boolean forceUpdate) {
 
+        if (mPromotionAPI == null) {
+
+            createPromotionsAPI();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         if(category == Category.Better)
@@ -84,9 +113,20 @@ public class PromotionsRepository {
 
         }else
         {
-            OkHttpHandler okHttpHandler = new OkHttpHandler();
+            //OkHttpHandler okHttpHandler = new OkHttpHandler();
 
-            okHttpHandler.execute("http://10.0.2.2:1337/promotion?category="+category.toString());
+            //okHttpHandler.execute("http://10.0.2.2:1337/promotion?category="+category.toString());
+
+            mPromotionAPI.getPromotions()
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(myData -> {
+
+                         myData.stream().filter(s-> s.getCategory() ==category).forEach(item -> getPromotionsByCategory(category).put(item.getId(),item));
+                        callback.onTasksLoaded(myData);
+                    }, throwable -> {
+                        // handle error event
+                    });
         }
 
         //List<Promotion> promotions = new ArrayList<Promotion>();
@@ -169,6 +209,30 @@ public class PromotionsRepository {
 
         return null;
 
+    }
+
+
+    private void createPromotionsAPI() {
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .create();
+/*
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(PromotionAPI.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        mPromotionAPI = retrofit.create(PromotionAPI.class);*/
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(PromotionAPI.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+
+        mPromotionAPI = retrofit.create(PromotionAPI.class);
     }
 
 
