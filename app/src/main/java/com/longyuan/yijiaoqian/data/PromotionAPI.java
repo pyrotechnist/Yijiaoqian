@@ -3,6 +3,7 @@ package com.longyuan.yijiaoqian.data;
 import java.util.List;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import rx.Single;
 
 /**
@@ -15,4 +16,7 @@ public interface PromotionAPI {
 
     @GET("/promotion")
     Single<List<Promotion>> getPromotions();
+
+    @GET("/promotion/destroy/id")
+    Single<Promotion> deletePromotion(@Path("id") String id);
 }

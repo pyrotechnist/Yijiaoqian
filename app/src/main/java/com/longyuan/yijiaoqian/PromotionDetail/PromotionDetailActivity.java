@@ -21,6 +21,7 @@ import com.longyuan.yijiaoqian.PromotionsActivity;
 import com.longyuan.yijiaoqian.PromotionsFragment;
 import com.longyuan.yijiaoqian.R;
 import com.longyuan.yijiaoqian.data.PromotionsRepository;
+import com.longyuan.yijiaoqian.utils.Category;
 
 public class PromotionDetailActivity extends AppCompatActivity {
 
@@ -68,6 +69,8 @@ public class PromotionDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String promotionId = intent.getStringExtra(PromotionsFragment.EXTRA_MESSAGE_NAME);
+
+        Category category = (Category) intent.getSerializableExtra(PromotionsFragment.CATEGORY_NAME);
 
        PromotionDetailFragment promotionDetailFragment =  (PromotionDetailFragment) getSupportFragmentManager().findFragmentById(R.id.promotion_detail_fragcontent);
 

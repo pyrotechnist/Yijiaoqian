@@ -1,6 +1,7 @@
 package com.longyuan.yijiaoqian.PromotionDetail;
 
 import com.longyuan.yijiaoqian.data.Promotion;
+import com.longyuan.yijiaoqian.utils.Category;
 
 /**
  * Created by loxu on 05/07/2017.
@@ -18,7 +19,7 @@ public class PromotionDetailContract {
 
         void start();
 
-        Promotion loadPromotion(String PromotionId);
+        Promotion loadPromotion(String PromotionId, Category category);
 
     }
 }

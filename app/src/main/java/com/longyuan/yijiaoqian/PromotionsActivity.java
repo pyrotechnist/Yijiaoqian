@@ -83,7 +83,7 @@ public class PromotionsActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
 
-        PromotionsFragment promotionsFragment1 = PromotionsFragment.getInstance();
+        PromotionsFragment promotionsFragment1 = PromotionsFragment.getInstance(Category.Better);
 
         new PromotionsPresenter(mPromotionsRepository,promotionsFragment1,Category.Better);
 
@@ -94,7 +94,7 @@ public class PromotionsActivity extends AppCompatActivity {
 
 
 
-        PromotionsFragment promotionsFragment2 = PromotionsFragment.getInstance();
+        PromotionsFragment promotionsFragment2 = PromotionsFragment.getInstance(Category.Good);
 
         new PromotionsPresenter(mPromotionsRepository,promotionsFragment2,Category.Good);
 

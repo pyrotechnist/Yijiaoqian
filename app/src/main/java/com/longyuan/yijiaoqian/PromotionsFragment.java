@@ -39,9 +39,9 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
 
     public static final String EXTRA_MESSAGE_NAME = "com.longyuan.yijiaoqian.MESSAGE_NAME";
 
-    private PromotionsRepository mPromotionsRepository;
+    public static final String CATEGORY_NAME = "com.longyuan.yijiaoqian.CATEGORY_NAME";
 
-    private Category mCategory;
+    private PromotionsRepository mPromotionsRepository;
 
     private PromotionsRecyclerViewAdapter mPromotionsRecyclerViewAdapter;
 
@@ -53,8 +53,13 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
 
     private PromotionsContract.Presenter mPresenter;
 
-    public static PromotionsFragment getInstance() {
-        return  new PromotionsFragment();
+    private Category mCategory;
+
+    public static PromotionsFragment getInstance(Category category) {
+
+        PromotionsFragment instance = new PromotionsFragment();
+        instance.mCategory = category;
+        return  instance;
     }
 
 
@@ -73,8 +78,6 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) inflater.inflate(
                 R.layout.promotions_frag, container, false);
@@ -133,6 +136,7 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
             public void onItemClick(DisplayData promotion) {
                 Intent intent = new Intent(getContext(), PromotionDetailActivity.class);
                 intent.putExtra(EXTRA_MESSAGE_NAME, promotion.getId());
+                intent.putExtra(CATEGORY_NAME, mCategory);
                 startActivity(intent);
             }
         });
@@ -184,14 +188,6 @@ public class PromotionsFragment extends Fragment implements SearchView.OnQueryTe
 
         return mPromotionsRepository.getPromotions(categoty);
     }*/
-
-    public void setPromotionsRepository(PromotionsRepository mPromotionsRepository) {
-        this.mPromotionsRepository = mPromotionsRepository;
-    }
-
-    public void setCategory(Category mCategory) {
-        this.mCategory = mCategory;
-    }
 
     private List<Promotion> filter(List<Promotion> models, String query) {
         query = query.toLowerCase();

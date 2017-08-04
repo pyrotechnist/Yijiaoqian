@@ -1,6 +1,7 @@
 package com.longyuan.yijiaoqian.data;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -9,10 +10,12 @@ import com.longyuan.yijiaoqian.utils.ApiAction;
 import com.longyuan.yijiaoqian.utils.Category;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import java8.util.stream.StreamSupport;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -81,21 +84,6 @@ public class PromotionsRepository {
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         if(category == Category.Better)
         {
             mLoadDataCallbackBetter = callback;
@@ -122,10 +110,11 @@ public class PromotionsRepository {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(myData -> {
 
-                         myData.stream().filter(s-> s.getCategory() ==category).forEach(item -> getPromotionsByCategory(category).put(item.getId(),item));
-                        callback.onTasksLoaded(myData);
+                        StreamSupport.stream(myData).filter(s-> s.getCategory() ==category).forEach(item -> getPromotionsByCategory(category).put(item.getId(),item));
+                        callback.onTasksLoaded(new ArrayList<Promotion>(getPromotionsByCategory(category).values()));
                     }, throwable -> {
                         // handle error event
+                        Log.e("","test",throwable);
                     });
         }
 
@@ -146,18 +135,22 @@ public class PromotionsRepository {
 
     }
 
-    public Promotion getPromotion(String promotionId) {
+    public Promotion getPromotion(String promotionId,Category category) {
 
         Promotion promotion = null;
 
-        for (Promotion element : mPromotions) {
+      /*  for (Promotion element : mPromotions) {
 
             if (element.getId().equals(promotionId)) {
                 element.setWatchedCount(element.getWatchedCount() + 1);
                 return promotion = element;
 
             }
-        }
+        }*/
+
+
+
+
         return  promotion;
     }
 
